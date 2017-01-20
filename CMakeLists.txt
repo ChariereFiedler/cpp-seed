@@ -39,7 +39,7 @@ INCLUDE_DIRECTORIES(
 file(         
 	GLOB_RECURSE
         SOURCE_FILES         
-	src
+	src/*
 )
 
 
