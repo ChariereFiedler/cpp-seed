@@ -1,3 +1,4 @@
-_builds
-builds
+build
+.idea
+cmake-build-debug
 *~

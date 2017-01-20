@@ -3,30 +3,23 @@
 cmake_minimum_required(VERSION 3.1)
 
 #------------------------------
-# Hunter package manager
-#------------------------------
-
-include("cmake/HunterGate.cmake")
-
-HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.17.3.tar.gz"
-    SHA1 "2a2f193860e2cb3b884bce74d85c3f30b1092274"
-)
-
-#------------------------------
 # Flag definition
 #------------------------------
 
-project(cpp-seed)
+project(cpp-seed CXX)
 
 set (CMAKE_CXX_STANDARD 14)
 
-#-------------------------------
-# Packages dependencies
-#-------------------------------
-hunter_add_package(SDL2)
-find_package(SDL2 CONFIG REQUIRED)
 
+#------------------------------
+# Conan package manager
+#------------------------------
+if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/build/conanbuildinfo.cmake) #Clion, with conanbuildinfo.cmake in build folder
+	include(${CMAKE_CURRENT_SOURCE_DIR}/build/conanbuildinfo.cmake)
+else()
+	include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake) # Not CLion
+endif()
+conan_basic_setup()
 
 #-------------------------------
 # Include and files
@@ -51,5 +44,5 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 	set(ADDITIONAL_LIBS "mingw32") 
 endif()
 
-add_executable(${PROJECT_NAME} ${SOURCE_FILES}  src/main.cpp) 
-target_link_libraries(${PROJECT_NAME}  SDL2::SDL2)
+add_executable(${PROJECT_NAME} ${SOURCE_FILES}  src/main.cpp include/engine.h include/properties.h)
+target_link_libraries(${PROJECT_NAME}  ${CONAN_LIBS})
