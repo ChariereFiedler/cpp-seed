@@ -1,13 +1,6 @@
 # Copyright (c) 2016-2017, Cédric Charière Fiedler
 # All rights reserved.
 cmake_minimum_required(VERSION 3.1)
-project(cpp-seed)
-
-#------------------------------
-# Flag definition
-#------------------------------
-
-set (CMAKE_CXX_STANDARD 14)
 
 #------------------------------
 # Hunter package manager
@@ -19,6 +12,14 @@ HunterGate(
     URL "https://github.com/ruslo/hunter/archive/v0.17.3.tar.gz"
     SHA1 "2a2f193860e2cb3b884bce74d85c3f30b1092274"
 )
+
+#------------------------------
+# Flag definition
+#------------------------------
+
+project(cpp-seed)
+
+set (CMAKE_CXX_STANDARD 14)
 
 #-------------------------------
 # Packages dependencies
