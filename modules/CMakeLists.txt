@@ -1,9 +1,20 @@
-cmake_minimum_required(VERSION 3.1)
+# Include modules
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/../cmake/modules)
 
-#------------------------------
-# Flag definition
-#------------------------------
 
-project(cpp-seed CXX)
+# ----------------------------------------------
+# Submodule inclusion
+# ----------------------------------------------
+# Add explicitly each submodule
+add_subdirectory(my-project)
 
-set (CMAKE_CXX_STANDARD 14)
+# ...
+
+# ----------------------------------------------
+# Doc inclusion
+# ----------------------------------------------
+add_custom_target(
+        all_doc_doxygen
+        DEPENDS
+            my-project_doc_doxygen
+)
