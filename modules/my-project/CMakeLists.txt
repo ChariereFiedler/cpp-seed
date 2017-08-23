@@ -1,5 +1,8 @@
 project(my-project C CXX)
 
+
+add_subdirectory(test)
+
 add_library(
     my-project-library
     ${CMAKE_CURRENT_SOURCE_DIR}/source/foo.cpp   )
