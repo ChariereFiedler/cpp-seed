@@ -3,9 +3,5 @@
 
 int foo(bool branch)
 {
-    if(branch)
-    {}
-    else
-    {}
-    return 0;
+    return branch ? 0:1;
 }
