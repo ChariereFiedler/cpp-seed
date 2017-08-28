@@ -1,0 +1,16 @@
+image: docker:17.05
+
+variables:
+  DOCKER_DRIVER: overlay
+
+services:
+- docker:dind
+
+before_script:
+- docker info
+
+build:
+  stage: build
+  script:
+  - docker build -t cpp-seed .
+  - docker run cpp-seed
