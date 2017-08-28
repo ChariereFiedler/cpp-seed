@@ -1,10 +1,7 @@
-image: docker:17.05
+image: docker:17.06.1-dind
 
 variables:
   DOCKER_DRIVER: overlay
-
-services:
-- docker:dind
 
 before_script:
 - docker info
