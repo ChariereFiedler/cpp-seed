@@ -6,8 +6,7 @@ set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "" FORCE)
 
 project(cpp-seed CXX)
 
-
-
+include(CTest)
 include(Coverage)
 
 
@@ -19,7 +18,7 @@ endif()
 # ------------------------------------------------------
 # Options
 # ------------------------------------------------------
-option(ENABLE_DOC "Allow the doc generation" ON)
+option(ENABLE_DOC "Allow the doc generation" OFF)
 option(ENABLE_TEST "Allow the unit testing" ON)
 option(ENABLE_COVERAGE "Allow the unit testing coverage" ON)
 
@@ -36,7 +35,6 @@ if (ENABLE_TEST)
         catch-install
         GIT_REPOSITORY https://github.com/philsquared/Catch.git
         CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_SOURCE_DIR}/external/
-        EXCLUDE_FROM_ALL TRUE
     )
 endif(ENABLE_TEST)
 
@@ -49,7 +47,6 @@ ExternalProject_Add(# ------------------------------------------------------
     spdlog-install
     GIT_REPOSITORY https://github.com/gabime/spdlog.git
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_SOURCE_DIR}/external/
-    EXCLUDE_FROM_ALL TRUE
 )
 
 
