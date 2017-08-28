@@ -4,5 +4,5 @@
 #include "catch.hpp"
 
 TEST_CASE("Foo Test", "[foo]") {
-    REQUIRE(foo(0)>5);
+    REQUIRE(foo(1+1) == 2);
 }
