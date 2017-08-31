@@ -34,9 +34,7 @@ ADD . /cpp-seed
 RUN mkdir /cpp-seed/build && \
     mkdir /cpp-seed/build/cmake-build-${BUILD_TYPE} && \
     cd /cpp-seed/build/cmake-build-${BUILD_TYPE} && \
-    cmake ../.. -DCMAKE_BUILD_TYPE=${BUILD_TYPE} && \
-    export CXX=${CXX} && \
-    export CC=${CC}
+    cmake ../.. -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
 WORKDIR /cpp-seed/build/cmake-build-${BUILD_TYPE}
 
 RUN make all
