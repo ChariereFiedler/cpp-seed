@@ -1,3 +1,4 @@
+#TODO: remove the 'before script' step for a faster way: maybe an image having yet docker-compose
 build:
   image: docker:latest
   services:
@@ -7,4 +8,4 @@ build:
     - pip install --no-cache-dir docker-compose
     - docker-compose -v
   script:
-  - docker-compose -f docker-compose.debug.yml
+  - docker-compose -f docker-compose.debug.yml up
