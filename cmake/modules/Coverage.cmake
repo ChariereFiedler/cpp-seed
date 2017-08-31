@@ -41,7 +41,7 @@ set(COVERAGE_LINKER_FLAGS    "--coverage"        CACHE INTERNAL "")
 
 get_property(ENABLED_LANGUAGES GLOBAL PROPERTY ENABLED_LANGUAGES)
 
-#message(STATUS "Checking coverage support for ${ENABLED_LANGUAGES}")
+message(STATUS "Checking coverage support for ${ENABLED_LANGUAGES}")
 foreach(_LANG IN LISTS ENABLED_LANGUAGES)
     include(Check${_LANG}CompilerFlag OPTIONAL)
     set(CMAKE_REQUIRED_LIBRARIES ${COVERAGE_LINKER_FLAGS}) # This is ugly, but better than rewriting/fixing check_<LANG>_compiler_flag
