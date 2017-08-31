@@ -70,4 +70,4 @@ This target is not in the default cmake command. You need to call it to install 
     $ctest
 ```
 
-TODO: The artifacts are available in the ***tests*** folder.
+TODO: The artifacts are available in the ***cmake-build-debug/Testing*** folder.
