@@ -1,5 +1,8 @@
-build
+build*
 .idea
-cmake-build-debug
+cmake-*
 *~
 external/
+.git
+docker*
+build
