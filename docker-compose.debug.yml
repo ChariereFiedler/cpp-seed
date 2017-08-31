@@ -17,6 +17,7 @@ services:
     command: ["sh", "-c", "make", "all"]
   test-debug:
     depends_on:
+      - build-debug
       - cmake-debug
     image: cppseed_cmake-debug:0.1
     env_file:
