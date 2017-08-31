@@ -1,18 +1,9 @@
 version: '2'
 services:
   cmake-debug:
+    image: cppseed_cmake-coverage:0.1
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        BUILD_TYPE: "Debug"
-  build-debug:
-    depends_on:
-      - cmake-debug
-    image: cppseed_cmake-debug
-    command: make -j 4
-  test-debug:
-    depends_on:
-      - cmake-debug
-    image: cppseed_cmake-debug
-    command: ctest
+        BUILD_TYPE: "Coverage"
