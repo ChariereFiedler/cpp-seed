@@ -5,7 +5,7 @@ add_subdirectory(test)
 
 add_library(
     my-project-library
-    ${CMAKE_CURRENT_SOURCE_DIR}/source/foo.cpp   )
+        source/foo.cpp)
 
 target_include_directories(
     my-project-library
@@ -13,7 +13,7 @@ target_include_directories(
 
 add_executable(
     my-project
-    ${CMAKE_CURRENT_SOURCE_DIR}/sample/my-project.cpp
+        sample/my-project.cpp
 )
 
 target_include_directories(
@@ -26,7 +26,7 @@ target_include_directories(
 if(ENABLE_DOC)
     find_package(Doxygen)
     if(DOXYGEN_FOUND)
-        set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in)
+        set(DOXYGEN_IN doc/Doxyfile.in)
         set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
 
         configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
