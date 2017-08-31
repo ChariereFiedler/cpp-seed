@@ -2,35 +2,41 @@
 # - Add Doxygen support
 # - Inlude the dockerfile in CI pipeline
 
-FROM ubuntu:zesty as builder
+FROM ubuntu:zesty as cmake
 
 ARG c_compiler=gcc-7
 ARG cxx_compiler=g++-7
-ARG CC=/usr/bin/gcc-7
-ARG CXX=/usr/bin/g++-7
+ARG BUILD_TYPE=Debug
+ARG CMAKE_CXX_COMPILER=${cxx_compiler}
+ENV CC=/usr/bin/${c_compiler}
+ENV CXX=/usr/bin/${cxx_compiler}
 
+
+# GCC & G++ installation
 RUN apt-get update &&\
-    apt-get -y install software-properties-common &&\
+    apt-get install -y --no-install-recommends --no-install-suggests \
+     software-properties-common &&\
     add-apt-repository ppa:ubuntu-toolchain-r/test &&\
+    apt-get remove -y software-properties-common --purge && \
     apt-get update &&\
-    apt-get install -y --allow-downgrades --allow-remove-essential \
-    --allow-change-held-packages \
-    build-essential git wget apt-utils gcc-7 g++-7;
+    apt-get install --no-install-recommends  --no-install-suggests --allow-downgrades  -y \
+    make cmake g++-7 gcc-7 git \
+    && apt-get autoremove -y\
+    && apt-get clean \
 
-RUN wget "https://cmake.org/files/v3.9/cmake-3.9.1.tar.gz" &&\
-    tar -xzvf cmake-3.9.1.tar.gz &&\
-    cd cmake-3.9.1 &&\
-    ./bootstrap &&\
-    make -j 4 &&\
-    make install
+
+# CMake Installation
+
+    && rm -rf /var/lib/apt/lists/* /var/log/* /tmp/*
 
 ADD . /cpp-seed
 
+RUN mkdir /cpp-seed/build && \
+    mkdir /cpp-seed/build/cmake-build-${BUILD_TYPE} && \
+    cd /cpp-seed/build/cmake-build-${BUILD_TYPE} && \
+    cmake ../.. -DCMAKE_BUILD_TYPE=${BUILD_TYPE} && \
+    export CXX=${CXX} && \
+    export CC=${CC}
+WORKDIR /cpp-seed/build/cmake-build-${BUILD_TYPE}
 
-RUN cd /cpp-seed && \
-    mkdir cmake-build-debug && \
-    cd cmake-build-debug && \
-    cmake .. -DCMAKE_CXX_COMPILER=${cxx_compiler} -DCMAKE_BUILD_TYPE=Debug && \
-    make install-all && \
-    make -j 4 && \
-    ctest
+RUN make all
