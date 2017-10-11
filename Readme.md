@@ -23,9 +23,8 @@ The current stack use the following tools:
 
 ## Roadmap
 
-- Docker Build
+- Modular Docker Build
 - Docker Doxygen
-- Gitlab CI
 - Gitlab Pages for generated artifacts (UT, Docs...)
 
 
