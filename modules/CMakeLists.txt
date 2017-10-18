@@ -6,7 +6,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/../cmake/modules)
 # Submodule inclusion
 # ----------------------------------------------
 # Add explicitly each submodule
-add_subdirectory(my-project)
+add_subdirectory(core)
 
 # ...
 
